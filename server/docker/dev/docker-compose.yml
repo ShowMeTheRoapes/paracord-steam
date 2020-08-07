@@ -1,0 +1,8 @@
+version: "3"
+services:
+  unittest_server:
+    container_name: steam_unittester
+    build:
+      context: ../../.
+      dockerfile: ./docker/dev/Dockerfile
+    command: python3 -m unittest discover -s ./steam_strand_tests
