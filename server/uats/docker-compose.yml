@@ -1,0 +1,23 @@
+version: "3"
+services:
+#  Stands up a local server to test against
+  local_steam_server:
+    container_name: local_steam_strand
+    build:
+      context: ../.
+      dockerfile: ./docker/dev/Dockerfile
+    networks:
+      - uat_network
+    ports:
+    - 5000:5000
+
+  local_steam_uats:
+    depends_on:
+      - local_steam_server
+    container_name: local_steam_uats
+    build: .
+    networks:
+      - uat_network
+
+networks:
+  uat_network:
